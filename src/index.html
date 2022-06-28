@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GIPHY Searcher</title>
 </head>
+
 <body>
   <form id="gif">
     <div class="container">
@@ -14,6 +16,22 @@
       <button type="submit" class="btn-primary">Enter</button>
     </div>
   </form>
-  <div id="output-image"></div>
+  <button type='click' class="btn-primary" id="trending">Trending</button>
+  <button type='click' class="btn-primary" id="random">Random</button>
+  <div class="images">
+    <div class="row">
+      <div class="col">
+        <div id="output-image1"></div>
+      </div>
+      <div class="col">
+        <div id="output-image2"></div>
+      </div>
+      <div class="col">
+        <div id="output-image3"></div>
+      </div>
+    </div>
+  </div>
+  </div>
 </body>
+
 </html>

@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/styles.css";
 import GiphyService from './giphy.service.js';
 import GiphyRandom from './giphy-random-service.js';
+import GiphyTrending from "./giphy-trending-service.js";
 
 $(document).ready(function () {
   $("form#gif").submit(function (event) {
@@ -29,23 +30,9 @@ $(document).ready(function () {
 
   $("button#trending").click(function (event) {
     event.preventDefault();
-  let promise = new Promise(function(resolve, reject) {
-    let request = new XMLHttpRequest();
-    const url = `https://api.giphy.com/v1/gifs/trending?api_key=${process.env.API_KEY}&limit=3&rating=g`;
-
-    request.onload = function () {
-      if (this.status === 200) {
-        resolve(request.response);
-      } else {
-        reject(request.response);
-      }
-    }
-    request.open("GET", url, true);
-    request.send();
-  });
-
-  
-    function outputTrending(response) {
+    let promise = GiphyTrending.getGif();
+    
+    promise.then((response)  => {
       const body = JSON.parse(response);
       $("#output-image1").html(
         `<img src="${body.data[0].images.original.url}"></img>`
@@ -56,8 +43,9 @@ $(document).ready(function () {
       $("#output-image3").html(
         `<img src="${body.data[2].images.original.url}"></img>`
       );
-    }
+    });
   });
+
   $("button#random").click(function (event) {
     event.preventDefault();
     let promise = GiphyRandom.getGif();
